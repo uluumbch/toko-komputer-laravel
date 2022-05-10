@@ -39,6 +39,7 @@ Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Compo
     Jalankan perintah untuk generate key baru dan menimpa perintah `APP_KEY`
 
     ```
+        cp .env.example .env
         php artisan key:generate
     ```
 
