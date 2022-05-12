@@ -1,5 +1,23 @@
 # toko-komputer-laravel
 
+# To-Do List
+
+-   Bela
+
+*   [ ] Membuat halaman dashboard
+*   [ ] Membuat sidebar
+*   [ ] Membuat tampilan stok barang
+*   [ ] Membuat tampilan barang terjual(penjualan)
+*   [ ] Membuat tampilan reset password dan ganti username
+
+-   Uluum
+
+*   [ ] Membuat backend untuk upload gambar
+*   [ ] login
+*   [ ] ganti pasword dan username
+*   [ ] cetak laporan
+*   [ ] fungionalitas web seperti hapus, tambah, dan ubah data
+
 ## Installation
 
 Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Composer.
