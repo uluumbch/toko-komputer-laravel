@@ -12,6 +12,7 @@
 
 -   Uluum
 
+*   [ ] membuat tampilan login
 *   [ ] Membuat backend untuk upload gambar
 *   [ ] login
 *   [ ] ganti pasword dan username
@@ -44,7 +45,14 @@ Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Compo
     composer install
     ```
 
-3. Konfigurasi database pada file `.env`, sesuaikan perintah dibawah dengan database yang dibuat.
+3. Buat file `.env` untuk konfigurasi dan generater `APP_KEY`.
+
+    ```
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4. Konfigurasi database pada file `.env`, sesuaikan perintah dibawah dengan database yang dibuat.
 
     ```env
     DB_HOST=127.0.0.1 # ganti dengan url anda atau biarkan default
@@ -54,23 +62,16 @@ Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Compo
     DB_PASSWORD= # sesuaikan dengan password database. biarkan default jika menggunakan     database lokal
     ```
 
-    Jalankan perintah untuk generate key baru dan menimpa perintah `APP_KEY`
-
-    ```
-        cp .env.example .env
-        php artisan key:generate
-    ```
-
-4. Migrasi tabel dan lakukan seed untuk mengisi data dummy
+5. Migrasi tabel dan lakukan seed untuk mengisi data pada database
 
     ```composer
-        php artisan migrate:fresh --seed
+    php artisan migrate:fresh --seed
     ```
 
-5. Aplikasi siap dijalankan dengan perintah
+6. Aplikasi siap dijalankan dengan perintah
 
     ```composer
-        php artisan serve
+     php artisan serve
     ```
 
 <p align="center">Apabila memerlukan database sqldump, file bernama prognet8.sql</p>
