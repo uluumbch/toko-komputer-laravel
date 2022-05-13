@@ -4,20 +4,20 @@
 
 -   Bela
 
-*   [ ] Membuat halaman dashboard
-*   [ ] Membuat sidebar
-*   [ ] Membuat tampilan stok barang
-*   [ ] Membuat tampilan barang terjual(penjualan)
-*   [ ] Membuat tampilan reset password dan ganti username
+-   [ ] Membuat halaman dashboard
+-   [ ] Membuat sidebar
+-   [ ] Membuat tampilan stok barang
+-   [ ] Membuat tampilan barang terjual(penjualan)
+-   [ ] Membuat tampilan reset password dan ganti username
 
 -   Uluum
 
-*   [ ] membuat tampilan login
-*   [ ] Membuat backend untuk upload gambar
-*   [ ] login
-*   [ ] ganti pasword dan username
-*   [ ] cetak laporan
-*   [ ] fungionalitas web seperti hapus, tambah, dan ubah data
+-   [x] membuat tampilan login
+-   [ ] Membuat backend untuk upload gambar
+-   [ ] login
+-   [ ] ganti pasword dan username
+-   [ ] cetak laporan
+-   [ ] fungionalitas web seperti hapus, tambah, dan ubah data
 
 ## Installation
 
