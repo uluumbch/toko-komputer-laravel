@@ -17,6 +17,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function(){
+Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/sidebar', function () {
+    return view('sidebar');
+});
+
+Route::get('/penjualan', function () {
+    return view('penjualan');
+});
+
+Route::get('/databarang', function () {
+    return view('databarang');
+});
+
+Route::get('/logout', function () {
+    return view('logout');
 });
