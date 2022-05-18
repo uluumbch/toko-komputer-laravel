@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>{{$judul}}</title>
 </head>
 <script>
     // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
@@ -21,7 +21,8 @@
     }
 </script>
 
-<body class="flex h-screen bg-gray-100 dark:bg-gray-700">
+<body>
+    @include('template.sidebar')
    @yield('container')
 </body>
 <script>
