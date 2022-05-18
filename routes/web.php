@@ -22,19 +22,28 @@ Route::get('/login', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('home', [
+        "judul" => "Home"
+    ]);
 });
 
-Route::get('/sidebar', function () {
-    return view('sidebar');
-});
 
 Route::get('/penjualan', function () {
-    return view('penjualan');
+    return view('penjualan', [
+        "judul" => "Data Penjualan"
+    ]);
 });
 
 Route::get('/databarang', function () {
-    return view('databarang');
+    return view('databarang', [
+        "judul" => "Data Barang"
+    ]);
+});
+
+Route::get('/gantipass', function () {
+    return view('gantipassword', [
+        "judul" => "Ganti Password"
+    ]);
 });
 
 Route::get('/logout', function () {
