@@ -23,7 +23,7 @@
 
 <body>
     @include('template.sidebar')
-   @yield('container')
+    @yield('container')
 </body>
 <script>
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
