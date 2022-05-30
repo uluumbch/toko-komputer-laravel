@@ -40,6 +40,12 @@ Route::get('/databarang', function () {
     ]);
 });
 
+Route::get('/gantilogo', function () {
+    return view('gantilogo', [
+        "judul" => "Ganti Logo"
+    ]);
+});
+
 Route::get('/gantipass', function () {
     return view('gantipassword', [
         "judul" => "Ganti Password"
