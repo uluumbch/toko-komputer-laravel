@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/login', function () {
+    return view('login');
+});
 
 Route::get('/home', function () {
     return view('home', [
         "judul" => "Home"
     ]);
-})->middleware('auth');
+});
 
 
 Route::get('/penjualan', function () {
@@ -51,4 +50,12 @@ Route::get('/gantipass', function () {
     return view('gantipassword', [
         "judul" => "Ganti Password"
     ]);
+});
+
+Route::get('/logout', function () {
+    return view('logout');
+});
+
+Route::get('/team', function () {
+    return view('team');
 });
