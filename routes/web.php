@@ -55,3 +55,7 @@ Route::get('/gantipass', function () {
 Route::get('/logout', function () {
     return view('logout');
 });
+
+Route::get('/team', function () {
+    return view('team');
+});
