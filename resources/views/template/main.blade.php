@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$judul}}</title>
+    <title>{{ $judul }}</title>
+    @livewireStyles
+    @powerGridStyles
 </head>
 <script>
     // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
@@ -24,6 +28,10 @@
 <body>
     @include('template.sidebar')
     @yield('container')
+
+    <!-- Scripts -->
+    @livewireScripts
+    @powerGridScripts
 </body>
 <script>
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
@@ -72,5 +80,10 @@
         document.getElementById("alert-2").classList.add("hidden")
     })
 </script>
+@stack('scripts')
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
 </html>

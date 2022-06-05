@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,30 +15,25 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
 
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/databarang', [BarangController::class, 'index']);
+
+Route::get('barang/list', [BarangController::class, 'getBarang'])->name('barang.list');
 
 Route::get('/home', function () {
     return view('home', [
         "judul" => "Home"
     ]);
-});
+})->middleware("auth");
 
 
 Route::get('/penjualan', function () {
     return view('penjualan', [
         "judul" => "Data Penjualan"
-    ]);
-});
-
-Route::get('/databarang', function () {
-    return view('databarang', [
-        "judul" => "Data Barang"
     ]);
 });
 
