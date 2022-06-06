@@ -3,7 +3,6 @@
     <div class="m-3 xl:w-96 w-full ">
         <form action="/penjualan" method="post">
             @csrf
-
             <label for="select-nama" class="form-label inline-block mb-2 text-gray-700 text-lg">Nama Barang</label>
             <select id="select-nama" name="barang_id"
                 class="form-select appearance-none
@@ -31,14 +30,14 @@
             </select>
             <label for="hargaBarang" class="form-label inline-block mb-2 text-gray-700 text-lg">Harga Jual
                 Barang</label>
-            <input type="text" name="harga" id="hargaBarang" placeholder="harga"
+            <input type="number" name="harga_jual" id="hargaBarang" placeholder="harga"
                 class="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full" />
             @error('harga')
                 <p class="text-red-500">{{ $message }}</p>
             @enderror
 
             <label for="stokBarang" class="form-label inline-block mb-2 text-gray-700 text-lg">Jumlah Terjual</label>
-            <input type="text" name="stok_barang" id="stokBarang" placeholder="stok barang"
+            <input type="number" name="jumlah" id="stokBarang" placeholder="stok barang"
                 class="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full" />
             @error('stok_barang')
                 <p class="text-red-500">{{ $message }}</p>

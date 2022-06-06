@@ -2,13 +2,21 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Barang;
 use App\Models\Penjualan;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
-use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
+use PowerComponents\LivewirePowerGrid\{Button,
+    Column,
+    Exportable,
+    Footer,
+    Header,
+    PowerGrid,
+    PowerGridComponent,
+    PowerGridEloquent};
 
 final class tabelpenjualan extends PowerGridComponent
 {
@@ -45,13 +53,14 @@ final class tabelpenjualan extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Penjualan>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\Penjualan>
+     */
     public function datasource(): Builder
     {
-        return Penjualan::query();
+        return Penjualan::query()->join('barang', 'penjualan.barang_id', '=', 'barang.id')
+            ->select('penjualan.*', 'barang.nama as nama', 'barang.harga as harga_barang');
     }
 
     /*
@@ -84,9 +93,20 @@ final class tabelpenjualan extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('name')
+            ->addColumn('nama')
+            ->addColumn('harga_barang')
+            ->addColumn('harga_jual', function (Penjualan $penjualan) {
+                return "Rp" . number_format($penjualan->harga_jual, 0, ',', '.');
+            })
+            ->addColumn('total_harga', function (Penjualan $penjualan) {
+                return "Rp" . number_format($penjualan->total_harga, 0, ',', '.');
+            })
+            ->addColumn('jumlah')
+            ->addColumn('laba', function (Penjualan $penjualan) {
+                return "Rp" . number_format($penjualan->laba, 0, ',', '.');
+            })
             ->addColumn('created_at')
-            ->addColumn('created_at_formatted', fn (Penjualan $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn(Penjualan $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -98,7 +118,7 @@ final class tabelpenjualan extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -110,16 +130,30 @@ final class tabelpenjualan extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Nama', 'name')
+            Column::make('Nama', 'nama')
                 ->searchable()
-                ->makeInputText('name')
+                ->makeInputText('nama')
+                ->sortable(),
+            Column::make('Harga Barang', 'harga_barang')
+                ->sortable(),
+
+            Column::make('Harga Jual', 'harga_jual',)
+                ->sortable(),
+
+            Column::make('Total Harga', 'total_harga')
+                ->sortable(),
+
+            Column::make('Jumlah ', 'jumlah')
+                ->sortable(),
+
+            Column::make('laba', 'laba')
                 ->sortable(),
 
             Column::make('Created at', 'created_at')
                 ->hidden(),
 
             Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->makeInputDatePicker()
+                ->makeInputDatePicker('penjualan.created_at')
                 ->searchable()
         ];
     }
@@ -132,7 +166,7 @@ final class tabelpenjualan extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Penjualan Action Buttons.
      *
      * @return array<int, Button>
@@ -162,7 +196,7 @@ final class tabelpenjualan extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Penjualan Action Rules.
      *
      * @return array<int, RuleActions>

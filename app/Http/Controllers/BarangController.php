@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
 // use App\Http\Controllers\DataTables;
@@ -20,6 +21,7 @@ class BarangController extends Controller
     {
         return view('databarang', [
             "judul" => "Data Barang",
+            "user" => User::all()
         ]);
     }
 
@@ -35,7 +37,8 @@ class BarangController extends Controller
         //
         return view('tambahbarang', [
             "judul" => "Tambah Data Barang",
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            "user" => User::all()
         ]);
     }
 

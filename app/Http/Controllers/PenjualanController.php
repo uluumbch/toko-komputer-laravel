@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
 use App\Models\Barang;
+use App\Models\User;
 use App\Http\Requests\StorePenjualanRequest;
 use App\Http\Requests\UpdatePenjualanRequest;
+use Illuminate\Support\Facades\DB;
 
 class PenjualanController extends Controller
 {
@@ -17,7 +19,8 @@ class PenjualanController extends Controller
     public function index()
     {
         return view('penjualan', [
-            "judul" => "Data Penjualan"
+            "judul" => "Data Penjualan",
+            "user" => User::all()
         ]);
     }
 
@@ -30,7 +33,8 @@ class PenjualanController extends Controller
     {
         return view('tambahpenjualan', [
             "judul" => "Tambah Data Penjualan",
-            "barang" => Barang::all()
+            "barang" => Barang::all(),
+            "user" => User::all()
         ]);
     }
 
@@ -42,7 +46,20 @@ class PenjualanController extends Controller
      */
     public function store(StorePenjualanRequest $request)
     {
-        //
+        $validasiData = $request->validate([
+            'barang_id' => 'required',
+            'harga_jual' => 'required|numeric',
+            'jumlah' => 'required|numeric',
+        ]);
+
+        $validasiData['total_harga'] = $request->harga_jual * $request->jumlah;
+        $hargaBarang = Barang::select('harga')->find($request->barang_id)->harga;
+        $hargaJual = (int)$request->harga_jual;
+        $validasiData['laba'] = $hargaBarang - $hargaJual;
+
+        Penjualan::create($validasiData);
+        // dd($validasiData, $hargaBarang);
+        return redirect('/penjualan')->with('succes', 'data berhasil ditambahkan');
     }
 
     /**
