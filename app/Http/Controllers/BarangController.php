@@ -77,7 +77,11 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return view('editbarang', [
+            "judul" => "edit Data Barang",
+            'barang' => $barang,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -89,7 +93,15 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        $validasiData = $request->validate([
+            'nama' => 'required|max:255',
+            'category_id' => 'required',
+            'harga' => 'required|numeric',
+            'stok_barang' => 'required|numeric'
+        ]);
+
+        Barang::where('id', $barang->id)->update($validasiData);
+        return redirect('/barang')->with('succesedit', 'data berhasil diedit');
     }
 
     /**
@@ -100,6 +112,9 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        Barang::where('id', $barang->id)
+            ->delete();
+
+        return redirect('/barang');
     }
 }

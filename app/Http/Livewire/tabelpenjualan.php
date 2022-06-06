@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Barang;
+use App\Models\Penjualan;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class tabelbarang extends PowerGridComponent
+final class tabelpenjualan extends PowerGridComponent
 {
     use ActionButton;
 
@@ -44,13 +45,13 @@ final class tabelbarang extends PowerGridComponent
     */
 
     /**
-     * PowerGrid datasource.
-     *
-     * @return Builder<\App\Models\Barang>
-     */
+    * PowerGrid datasource.
+    *
+    * @return Builder<\App\Models\Penjualan>
+    */
     public function datasource(): Builder
     {
-        return Barang::query()->join('categories', 'barang.category_id', '=', 'categories.id')->select('barang.*', 'categories.name as category');
+        return Penjualan::query();
     }
 
     /*
@@ -82,12 +83,10 @@ final class tabelbarang extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('nama')
-            ->addColumn('category')
-            ->addColumn('harga')
-            ->addColumn('stok_barang')
-            ->addColumn('created_at_formatted', fn (Barang $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (Barang $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('id')
+            ->addColumn('name')
+            ->addColumn('created_at')
+            ->addColumn('created_at_formatted', fn (Penjualan $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -99,7 +98,7 @@ final class tabelbarang extends PowerGridComponent
     |
     */
 
-    /**
+     /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -107,30 +106,21 @@ final class tabelbarang extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('NAMA', 'nama')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('CATEGORY', 'category'),
-
-
-            Column::make('HARGA', 'harga')
-                ->makeInputRange(),
-
-            Column::make('STOK BARANG', 'stok_barang')
-                ->makeInputRange(),
-
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+            Column::make('ID', 'id')
                 ->searchable()
                 ->sortable(),
-            // ->makeInputDatePicker(),
 
-            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
+            Column::make('Nama', 'name')
                 ->searchable()
+                ->makeInputText('name')
                 ->sortable(),
-            // ->makeInputDatePicker(),
 
+            Column::make('Created at', 'created_at')
+                ->hidden(),
+
+            Column::make('Created at', 'created_at_formatted', 'created_at')
+                ->makeInputDatePicker()
+                ->searchable()
         ];
     }
 
@@ -142,28 +132,27 @@ final class tabelbarang extends PowerGridComponent
     |
     */
 
-    /**
-     * PowerGrid Barang Action Buttons.
+     /**
+     * PowerGrid Penjualan Action Buttons.
      *
      * @return array<int, Button>
      */
 
-
+    /*
     public function actions(): array
     {
-        return [
-            Button::make('edit', 'Edit')
-                ->target('')
-                ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-                ->route('barang.edit', ['barang' => 'id']),
-            Button::make('destroy', 'Delete')
-                ->target('')
-                ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-                ->route('barang.destroy', ['barang' => 'id'])
-                ->method('delete')
+       return [
+           Button::make('edit', 'Edit')
+               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->route('penjualan.edit', ['penjualan' => 'id']),
+
+           Button::make('destroy', 'Delete')
+               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+               ->route('penjualan.destroy', ['penjualan' => 'id'])
+               ->method('delete')
         ];
     }
-
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -173,8 +162,8 @@ final class tabelbarang extends PowerGridComponent
     |
     */
 
-    /**
-     * PowerGrid Barang Action Rules.
+     /**
+     * PowerGrid Penjualan Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -186,7 +175,7 @@ final class tabelbarang extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($barang) => $barang->id === 1)
+                ->when(fn($penjualan) => $penjualan->id === 1)
                 ->hide(),
         ];
     }

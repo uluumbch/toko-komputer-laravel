@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,10 @@ Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('g
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::resource('barang', BarangController::class);
+Route::resource('barang', BarangController::class)->middleware('auth');
+Route::resource('penjualan', PenjualanController::class)->middleware('auth');
 
+Route::post('/editpasswd',[LoginController::class, 'gantiPassword'])->middleware('auth');
 
 
 Route::get('/home', function () {
@@ -31,11 +34,7 @@ Route::get('/home', function () {
 })->middleware("auth");
 
 
-Route::get('/penjualan', function () {
-    return view('penjualan', [
-        "judul" => "Data Penjualan"
-    ]);
-});
+
 
 Route::get('/gantilogo', function () {
     return view('gantilogo', [

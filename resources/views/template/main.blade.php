@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/selectize.js') }}"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $judul }}</title>
     @livewireStyles
@@ -77,10 +78,7 @@
 
     });
 </script>
+
 @stack('scripts')
-<script src="https://code.jquery.com/jquery.js"></script>
-<!-- DataTables -->
-<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
 </html>
