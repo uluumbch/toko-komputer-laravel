@@ -55,7 +55,7 @@ class PenjualanController extends Controller
         $validasiData['total_harga'] = $request->harga_jual * $request->jumlah;
         $hargaBarang = Barang::select('harga')->find($request->barang_id)->harga;
         $hargaJual = (int)$request->harga_jual;
-        $validasiData['laba'] = $hargaBarang - $hargaJual;
+        $validasiData['laba'] = ($hargaJual - $hargaBarang) * $request->jumlah;
 
         Penjualan::create($validasiData);
         // dd($validasiData, $hargaBarang);
@@ -104,6 +104,7 @@ class PenjualanController extends Controller
      */
     public function destroy(Penjualan $penjualan)
     {
-        //
+        Penjualan::destroy($penjualan->id);
+        return redirect('/penjualan');
     }
 }

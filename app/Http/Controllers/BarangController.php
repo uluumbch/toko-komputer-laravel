@@ -83,7 +83,8 @@ class BarangController extends Controller
         return view('editbarang', [
             "judul" => "edit Data Barang",
             'barang' => $barang,
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            "user" => User::all()
         ]);
     }
 

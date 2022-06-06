@@ -30,5 +30,9 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'name' => "processor"
         ]);
+
+        Category::create([
+            'name' => 'Router'
+        ]);
     }
 }

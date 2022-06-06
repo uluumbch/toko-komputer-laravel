@@ -50,6 +50,8 @@ Route::get('/gantilogo', function () {
     ]);
 });
 
+Route::get('/kategori/ubah/{id}', [CategoryController::class, 'ubahkategori'])->middleware('auth');
+
 Route::get('/gantipass', function () {
     return view('gantipassword', [
         "judul" => "Ganti Password",
@@ -57,6 +59,6 @@ Route::get('/gantipass', function () {
     ]);
 })->middleware('auth');
 
-Route::get('/team', function () {
-    return view('team');
+Route::get('/tentangkami', function () {
+    return view('tentangkami');
 });

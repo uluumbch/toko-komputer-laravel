@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -73,7 +75,20 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('editkategori', [
+            'judul' => 'Edit kategori',
+            'kategori' => $category,
+            "user" => User::all()
+        ]);
+    }
+
+    public function ubahkategori($id)
+    {
+        return view('editkategori', [
+            'judul' => 'Edit Kategori',
+            'kategori' => Category::select("*")->where('id', $id)->first(),
+            "user" => User::all()
+        ]);
     }
 
     /**
@@ -85,7 +100,12 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $validasiData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        Category::where('id', $request->id)->update($validasiData);
+        return redirect('/kategori')->with('succesedit', 'data berhasil diedit');
     }
 
     /**
@@ -94,8 +114,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, $id)
     {
-        //
+        Category::destroy($id);
+        return redirect('/kategori')->with('succesedit', 'data berhasil dihapus');
     }
 }
