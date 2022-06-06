@@ -26,6 +26,7 @@
 </script>
 
 <body>
+    {{ App::setLocale('id') }}
     @include('template.sidebar')
     @yield('container')
 
@@ -45,7 +46,7 @@
         themeToggleDarkIcon.classList.remove('hidden');
     }
 
-    var themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleBtn = document.getElementById('theme-toggle');
 
     themeToggleBtn.addEventListener('click', function() {
 
@@ -75,10 +76,6 @@
         }
 
     });
-
-    document.getElementById("closeAlert").addEventListener('click', () => {
-        document.getElementById("alert-2").classList.add("hidden")
-    })
 </script>
 @stack('scripts')
 <script src="https://code.jquery.com/jquery.js"></script>

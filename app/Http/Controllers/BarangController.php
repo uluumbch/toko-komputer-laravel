@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use DataTables;
 // use App\Http\Controllers\DataTables;
@@ -19,23 +20,9 @@ class BarangController extends Controller
     {
         return view('databarang', [
             "judul" => "Data Barang",
-            "barang" => Barang::get()
         ]);
     }
 
-    public function getBarang(Request $request)
-    {
-        $data = Barang::latest()->get();
-        return DataTables::of(Barang::limit(10))->make(true);
-        // return Datatables::of($data)
-        //     ->addIndexColumn()
-        //     ->addColumn('action', function ($row) {
-        //         $actionBtn = '<a href="javascript:void(0)" class="edit focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</a> <a href="javascript:void(0)" class="delete focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</a>';
-        //         return $actionBtn;
-        //     })
-        //     ->rawColumns(['action'])
-        //     ->make(true);
-    }
 
 
     /**
@@ -46,6 +33,10 @@ class BarangController extends Controller
     public function create()
     {
         //
+        return view('tambahbarang', [
+            "judul" => "Tambah Data Barang",
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -56,7 +47,15 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validasiData = $request->validate([
+            'nama' => 'required|max:255',
+            'category_id' => 'required',
+            'harga' => 'required|numeric',
+            'stok_barang' => 'required|numeric'
+        ]);
+
+        Barang::create($validasiData);
+        return redirect('/barang')->with('succes', 'data berhasil ditambahkan');
     }
 
     /**

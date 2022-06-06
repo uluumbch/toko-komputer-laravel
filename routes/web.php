@@ -20,9 +20,9 @@ Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('g
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/databarang', [BarangController::class, 'index']);
+Route::resource('barang', BarangController::class);
 
-Route::get('barang/list', [BarangController::class, 'getBarang'])->name('barang.list');
+
 
 Route::get('/home', function () {
     return view('home', [

@@ -154,11 +154,11 @@ final class tabelbarang extends PowerGridComponent
         return [
             Button::make('edit', 'Edit')
                 ->target('')
-                ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-                ->route('barang.edit', ['barang' => 'id']),
+                ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm'),
+//                ->route('barang.edit', ['barang' => 'id']),
             Button::make('destroy', 'Delete')
                 ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-                ->route('barang.destroy', ['barang' => 'id'])
+//                ->route('barang.destroy', ['barang' => 'id'])
                 ->method('delete')
         ];
     }
