@@ -30,7 +30,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('tambahkategori', [
+            'judul' => 'Tambah Data Kategori',
+            'user' => User::all(),
+
+        ]);
     }
 
     /**
@@ -41,7 +45,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $validasiData = $request->validate([
+            'name' => 'required|max:255',
+
+        ]);
+
+        Category::create($validasiData);
+        return redirect('/kategori')->with('succes', 'data berhasil ditambahkan');
     }
 
     /**

@@ -9,6 +9,7 @@
     <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
     <script src="{{ asset('js/selectize.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $judul }}</title>
     @livewireStyles
@@ -44,7 +45,7 @@
                         <img src="{{ asset('images/' . $user->find(Auth::user()->id)->logo) }}" alt="website logo"
                             class="w-64 max-w-min h-32 object-cover">
                     @else
-                        Flowtrail UI
+                        Logo Website
                     @endif
                 </a>
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
@@ -60,12 +61,16 @@
             </div>
             <nav :class="{ 'block': open, 'hidden': !open }"
                 class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
+                <a class="block px-6 py-4 text-lg mt-2 font-semibold text-gray-200 rounded-lg bg-green-500 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="/penjualan/create">Tambah Penjualan</a>
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline {{ Request::is('home') ? 'bg-gray-200 dark:bg-gray-700' : '' }}"
                     href="/home">Home</a>
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline {{ Request::is('penjualan*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}"
                     href="/penjualan">Data Penjualan</a>
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline {{ Request::is('barang*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}"
                     href="/barang">Data Barang</a>
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline {{ Request::is('kategori*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}"
+                    href="/kategori">Data Kategori</a>
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline {{ Request::is('gantipassw*') ? 'bg-gray-200 dark:bg-gray-700' : '' }}"
                     href="/gantipass">Ganti Password</a>
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline {{ Request::is('gantilogo') ? 'bg-gray-200 dark:bg-gray-700' : '' }}"
