@@ -23,11 +23,7 @@
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
                 @foreach ($barang as $item)
-                    @if (old('barang_id') == $item->id)
-                        <option value="{{ $item->id }}" selected>{{ $item->nama }}</option>
-                    @else
-                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                    @endif
+                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
                 @endforeach
             </select>
             <label for="hargaBarang" class="form-label inline-block mb-2 text-gray-700 text-lg dark:text-gray-200 ">Harga

@@ -77,6 +77,14 @@
                     href="/gantilogo">Ganti Logo</a>
                 <a
                     class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit"><span class="font-medium">Keluar</span></button>
+                    </form>
+                </a>
+
+                <a
+                    class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg  dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                     <button id="theme-toggle" type="button"
                         class="text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 w-full">
                         <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"

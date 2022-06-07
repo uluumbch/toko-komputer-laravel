@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Barang;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
