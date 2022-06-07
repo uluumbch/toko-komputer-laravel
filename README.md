@@ -1,5 +1,14 @@
 # toko-komputer-laravel
 
+Framework yang digunakan pada sistem informasi penjualan komputer:
+- Tailwindcss
+- Alpine JS
+- Laravel
+
+Library yang digunakan:
+- Selectize JS
+- Livewire Powergrid
+
 ## Installation
 
 Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Composer.
