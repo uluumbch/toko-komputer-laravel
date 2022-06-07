@@ -3,7 +3,7 @@
     <div class="m-3 xl:w-96 w-full ">
         <form action="/barang/{{ $barang->id }}" method="POST">
             @method('put')
-            {{ dd($barang) }}
+
             @csrf
             <label for="namaBarang" class="form-label inline-block mb-2 text-gray-700 text-lg">Nama Barang</label>
             <input type="text" name="nama" id="namaBarang" placeholder="harga" value="{{ old('nama', $barang->nama) }}"
