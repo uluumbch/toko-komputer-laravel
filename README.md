@@ -1,24 +1,5 @@
 # toko-komputer-laravel
 
-# To-Do List
-
--   Bela
-
--   [ ] Membuat halaman dashboard
--   [ ] Membuat sidebar
--   [ ] Membuat tampilan stok barang
--   [ ] Membuat tampilan barang terjual(penjualan)
--   [ ] Membuat tampilan reset password dan ganti username
-
--   Uluum
-
--   [x] membuat tampilan login
--   [ ] Membuat backend untuk upload gambar
--   [ ] login
--   [ ] ganti pasword dan username
--   [ ] cetak laporan
--   [ ] fungionalitas web seperti hapus, tambah, dan ubah data
-
 ## Installation
 
 Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Composer.
@@ -39,10 +20,12 @@ Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Compo
     cd c:/xampp/htdocs/toko-komputer-laravel
     ```
 
-    Jalankan perintah composer install pada terminal
+    Jalankan perintah composer install dan npm install pada terminal
 
     ```bash
     composer install
+
+    npm install
     ```
 
 3. Buat file `.env` untuk konfigurasi dan generater `APP_KEY`.
@@ -74,8 +57,6 @@ Sebelum melakukan instalasi, pastikan sudah menginstal PHP versi =>8.0 dan Compo
      php artisan serve
     ```
 
-<p align="center">Apabila memerlukan database sqldump, file bernama prognet8.sql</p>
-
 ## Contributing
 
 1. Jika sudah di clone, pull dulu repository ini dengan perintah berikut, supaya dapat editan terbaru
@@ -96,9 +77,13 @@ git commit -m "pesan"
 ```
 
 ```
-git push origin master
+git push origin main
 ```
 
 ## Screenshot
+
+![Screenshoot 1](/public/images/Screenshot%201.png)
+
+![Screenshoot 2](/public/images/Screenshot%202.png)
 
 ## Online Demo
