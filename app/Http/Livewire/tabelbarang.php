@@ -84,7 +84,9 @@ final class tabelbarang extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('nama')
             ->addColumn('category')
-            ->addColumn('harga')
+            ->addColumn('harga', function (Barang $barang) {
+                return "Rp" . number_format($barang->harga, 0, ',', '.');
+            })
             ->addColumn('stok_barang')
             ->addColumn('created_at_formatted', fn (Barang $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
             ->addColumn('updated_at_formatted', fn (Barang $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
@@ -121,15 +123,15 @@ final class tabelbarang extends PowerGridComponent
             Column::make('STOK BARANG', 'stok_barang')
                 ->makeInputRange(),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+            Column::make('DIBUAT', 'created_at_formatted', 'created_at')
                 ->searchable()
-                ->sortable(),
-            // ->makeInputDatePicker(),
+                ->sortable()
+                ->makeInputDatePicker('barang.created_at'),
 
-            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
+            Column::make('DIBUAH', 'updated_at_formatted', 'updated_at')
                 ->searchable()
-                ->sortable(),
-            // ->makeInputDatePicker(),
+                ->sortable()
+                ->makeInputDatePicker('barang.updated_at'),
 
         ];
     }
